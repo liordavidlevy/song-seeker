@@ -1,25 +1,24 @@
 #albums-search {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  #albums-list {
     display: flex;
-    width: 100%;
     flex-direction: column;
+    gap: 16px;
     justify-content: center;
     align-items: center;
-
-    .card {
-        flex-direction: row;
-        border-radius: 8px;
-        width: 500px;
-        height: 150px;
-
-        &:hover {
-            cursor: pointer;
-            filter: brightness(95%);
-        }
-
-        & .footer {
-            display: flex;
-            align-items: center;
-            border-inline-start: 1px solid var(--mdc-outlined-card-outline-color);
-        }
+  }
+  #loader {
+    width: 500px;
+    border-radius: 8px;
+    display: flex;
+    gap: 16px;
+    #loader-text-group {
+      padding: 16px;
+      width: inherit;
     }
+  }
 }

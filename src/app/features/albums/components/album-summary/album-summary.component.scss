@@ -1,0 +1,35 @@
+#album {
+  flex-direction: row;
+  border-radius: 8px;
+  width: 500px;
+  height: 150px;
+  mat-card-header {
+    padding: 0;
+    flex-grow: 1;
+    img {
+      width: 150px;
+      height: "150px";
+      border-radius: 8px 0 0 8px;
+    }
+    mat-card-title-group {
+      padding: 8px 0 0 16px;
+      flex-grow: 1;
+      text-align: start;
+      justify-content: start;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+  }
+  & #album-type {
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    border-inline-start: 1px solid var(--mdc-outlined-card-outline-color);
+    p {
+      writing-mode: vertical-lr;
+      margin: 8px;
+    }
+  }
+}

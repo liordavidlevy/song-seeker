@@ -9,7 +9,7 @@
       />
       <mat-autocomplete #auto="matAutocomplete">
         @for (option of options; track option) {
-          <mat-option [value]="option">{{option}}</mat-option>
+        <mat-option [value]="option">{{ option }}</mat-option>
         }
       </mat-autocomplete>
       <button
@@ -23,89 +23,25 @@
     </mat-form-field>
   </div>
 
-  <div *ngIf="albums$ | async; let albums" style="width: 100%">
+  <div *ngIf="albums$ | async; let albums">
     {{ albums.total }}
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        justify-content: center;
-        align-items: center;
-      "
-    >
+    <div id="albums-list">
       @for (album of albums.items | filterNull; track album.id) {
-      <mat-card
-        mat-ripple
-        class="card"
-        appearance="outlined"
-        [routerLink]="['/albums', album.id]"
-      >
-        <img
-          mat-card-image
-          [src]="album.images[1].url"
-          width="150px"
-          height="150px"
-          style="border-radius: 8px 0 0 8px"
-        />
-        <mat-card-header
-          style="flex-grow: 1; text-align: start; justify-content: start"
-        >
-          <mat-card-title class="overflow-text-two-lines">{{
-            album.name
-          }}</mat-card-title>
-          <mat-card-subtitle class="overflow-text-one-line">{{
-            getArtists(album.artists)
-          }}</mat-card-subtitle>
-          <mat-card-subtitle
-            >{{ album.total_tracks }}
-            <ng-container [ngPlural]="album.total_tracks">
-              <ng-template ngPluralCase="=1">Track</ng-template>
-              <ng-template ngPluralCase="other">Tracks</ng-template>
-            </ng-container>
-            | {{ album.release_date | date }}</mat-card-subtitle
-          >
-        </mat-card-header>
-        <mat-card-footer
-          class="footer"
-          [style.background-color]="getColor(album.album_type)"
-        >
-          <p style="writing-mode: vertical-lr; margin: 8px">
-            {{ album.album_type | uppercase }}
-          </p>
-        </mat-card-footer>
-        <!-- <mat-card-content>
-                    {{album.}}
-                  </mat-card-content> -->
-      </mat-card>
+      <app-album-summary [album]="album" />
       }
-      <ng-container *ngFor="let _ of [].constructor(3)">
-        <mat-grid-list
-          style="width: 500px; border-radius: 8px"
-          rowHeight="30px"
-          cols="10"
-        >
-          <mat-grid-tile colspan="3" rowspan="5">
-            <ngx-skeleton-loader
-              [theme]="{
-                width: '150px',
-                height: '150px',
-                'border-radius': '8px 0 0 8px',
-                margin: '0'
-              }"
-            />
-          </mat-grid-tile>
-          <mat-grid-tile colspan="7" rowspan="1">
-            <ngx-skeleton-loader [theme]="{ width: '330px', height: '2em' }" />
-          </mat-grid-tile>
-          <mat-grid-tile colspan="7" rowspan="1">
-            <ngx-skeleton-loader [theme]="{ width: '330px', height: '2em' }" />
-          </mat-grid-tile>
-          <mat-grid-tile colspan="7" rowspan="1">
-            <ngx-skeleton-loader [theme]="{ width: '330px', height: '1em' }" />
-          </mat-grid-tile>
-        </mat-grid-list>
-      </ng-container>
+      <div id="loader">
+        <ngx-skeleton-loader
+          [theme]="{
+            width: '150px',
+            height: '150px',
+            'border-radius': '8px 0 0 8px'
+          }"
+        />
+        <div id="loader-text-group">
+          <ngx-skeleton-loader [theme]="{ height: '32px' }" />
+          <ngx-skeleton-loader count="2" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

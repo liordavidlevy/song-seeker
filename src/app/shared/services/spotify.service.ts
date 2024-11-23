@@ -31,7 +31,7 @@ export class SpotifyService {
   }
 
   handleError<T>(err: any, _caught: Observable<T>): ObservableInput<T> {
-    console.log(err);
+    console.error(err);
     this.notificationService.error();
 
     return of();
