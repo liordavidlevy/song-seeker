@@ -1,0 +1,34 @@
+<mat-toolbar id="sidebar">
+  <a id="site-logo" routerLink="/home">
+    <app-svg-icon name="song-seeker" />
+  </a>
+  <mat-divider class="divider" [inset]="true" />
+  <a
+    id="user-registration"
+    mat-icon-button
+    routerLink="/register"
+    matTooltip="Register new user"
+    matTooltipPosition="left"
+  >
+    <mat-icon class="page-icon" color="white">account_circle</mat-icon>
+  </a>
+  <button
+    id="spotify-stuff"
+    mat-icon-button
+    matTooltip="Add access token"
+    matTooltipPosition="left"
+    (click)="addCoookie()"
+  >
+    <mat-icon class="page-icon" color="white">cookie</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  @if (user$ | async; as user) {
+  <div
+    class="avatar"
+    [matTooltip]="getUserDetails(user)"
+    matTooltipPosition="right"
+  >
+    {{ user.username[0] | uppercase }}
+  </div>
+  }
+</mat-toolbar>

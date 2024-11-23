@@ -1,0 +1,44 @@
+#album {
+  width: 100%;
+  border-radius: 32px;
+
+  #details {
+    padding-top: 0;
+    padding-left: 0;
+    justify-content: start;
+    #cover {
+      border-top-left-radius: 32px;
+      border-right: 1px solid var(--mdc-outlined-card-outline-color);
+      border-bottom: 1px solid var(--mdc-outlined-card-outline-color);
+      width: 400px;
+      height: 400px;
+    }
+    #summary {
+      margin: 16px 0 0 16px;
+      mat-card-title {
+        font-size: 32px;
+        font-weight: 800;
+      }
+    }
+  }
+  .track {
+    margin: 4px 0;
+    .preview {
+      align-self: center;
+    }
+  }
+}
+
+#loader {
+  width: 100%;
+  border-radius: 32px;
+  #loader-smmary {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+  }
+  #loader-text-group {
+    padding: 16px;
+    width: inherit;
+  }
+}

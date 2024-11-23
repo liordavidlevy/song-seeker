@@ -1,0 +1,47 @@
+<div id="register" [formGroup]="userForm">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="email" formControlName="email" name="email" matInput />
+    @if (userForm.controls.email.errors?.['required']) {
+    <mat-error>Email is required</mat-error>
+    } @if (userForm.controls.email.errors?.['pattern']) {
+    <mat-error>Not a valid email address</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" name="username" />
+    @if (userForm.controls.username.errors?.['required']) {
+    <mat-error>Username is required</mat-error>
+    } @if (userForm.controls.username.errors?.['pattern']) {
+    <mat-error>Only english letters and numbers are allowed. Cannot start with a number</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
+      name="password"
+    />
+    <button mat-icon-button matSuffix (click)="hide = !hide">
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    @if (userForm.controls.password.errors?.['required']) {
+    <mat-error>Password is required</mat-error>
+    } @if (userForm.controls.password.errors?.['pattern']) {
+    <mat-error>No whitespace charecters are allowed. Has to contain at least on capital letter and one number</mat-error>
+    }
+  </mat-form-field>
+  <button
+    id="submit-button"
+    color="primary"
+    mat-flat-button
+    [disabled]="userForm.invalid"
+    (click)="submmitForm()"
+  >
+    <mat-icon>send</mat-icon>
+    Submit
+  </button>
+</div>

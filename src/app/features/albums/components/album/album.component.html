@@ -1,0 +1,59 @@
+@if ((album$ | async); as album) {
+<mat-card id="album" appearance="outlined">
+  <mat-card-header id="details">
+    <img id="cover" [src]="album.images[0].url" mat-card-image />
+    <mat-card-title-group id="summary">
+      <mat-card-title>{{ album.name | uppercase }}</mat-card-title>
+      <mat-card-subtitle>{{ album.type | uppercase }}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <b>
+          {{ getArtists(album.artists) }}
+        </b>
+        •
+        {{ album.release_date | date }} • {{ album.total_tracks }}
+        <ng-container [ngPlural]="album.total_tracks">
+          <ng-template ngPluralCase="=1">Song</ng-template>
+          <ng-template ngPluralCase="other">Songs</ng-template>
+        </ng-container>
+        • Top {{ album.popularity }} • {{ album.label }}
+      </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-divider />
+  <mat-card-content>
+    <h2>Tracks (First 50)</h2>
+    <mat-list>
+      @for (track of album.tracks.items; track track.id) {
+      <mat-divider />
+      <mat-list-item class="track">
+        <span matListItemTitle>{{ track.name }}</span>
+        <span matListItemLine>
+          {{ getArtists(track.artists) }} •
+          {{ track.duration_ms | date : "mm:ss" }}
+        </span>
+        <audio class="preview" matListItemMeta controls>
+          <source [src]="track.preview_url" type="audio/mpeg" />
+        </audio>
+      </mat-list-item>
+      }
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+} @else {
+<div id="loader">
+  <div id="loader-smmary">
+    <ngx-skeleton-loader
+      [theme]="{
+        width: '400px',
+        height: '400px',
+        'border-top-left-radius': '32px'
+      }"
+    />
+    <div id="loader-text-group">
+      <ngx-skeleton-loader [theme]="{ height: '32px' }" />
+      <ngx-skeleton-loader count="2" />
+    </div>
+  </div>
+  <ngx-skeleton-loader count="4" />
+</div>
+}

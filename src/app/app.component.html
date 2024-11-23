@@ -1,0 +1,9 @@
+<app-sidebar />
+<div id="layout">
+  <mat-toolbar id="header">
+    <span>{{ getTitle() | uppercase }}</span>
+  </mat-toolbar>
+  <div id="page">
+    <router-outlet />
+  </div>
+</div>
