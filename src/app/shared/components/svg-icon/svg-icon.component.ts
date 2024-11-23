@@ -18,6 +18,6 @@ export class SvgIconComponent implements OnInit {
   ngOnInit() {
     this.iconRegistry.addSvgIcon(
       this.name,
-      this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/icons/${this.name}.svg`));
+      this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${this.name}.svg`));
   }
 }
