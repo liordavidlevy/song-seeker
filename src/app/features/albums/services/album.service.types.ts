@@ -32,7 +32,7 @@ export interface AlbumResponse {
   images: Image[];
   name: string;
   release_date: string;
-  type: string;
+  album_type: string;
   artists: Artist[];
   tracks: Tracks;
   label: string;

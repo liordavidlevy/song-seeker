@@ -4,7 +4,7 @@
     <img id="cover" [src]="album.images[0].url" mat-card-image />
     <mat-card-title-group id="summary">
       <mat-card-title>{{ album.name | uppercase }}</mat-card-title>
-      <mat-card-subtitle>{{ album.type | uppercase }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ album.album_type | uppercase }}</mat-card-subtitle>
       <mat-card-subtitle>
         <b>
           {{ getArtists(album.artists) }}
