@@ -2,7 +2,6 @@
   <a id="site-logo" routerLink="/home">
     <app-svg-icon name="song-seeker" />
   </a>
-  <mat-divider class="divider" [inset]="true" />
   <a
     id="user-registration"
     mat-icon-button
@@ -13,7 +12,7 @@
     <mat-icon class="page-icon" color="white">account_circle</mat-icon>
   </a>
   <button
-    id="spotify-stuff"
+    id="spotify-token"
     mat-icon-button
     matTooltip="Add access token"
     matTooltipPosition="left"
@@ -21,7 +20,7 @@
   >
     <mat-icon class="page-icon" color="white">cookie</mat-icon>
   </button>
-  <span class="spacer"></span>
+  <span id="spacer"></span>
   @if (user$ | async; as user) {
   <div
     class="avatar"
