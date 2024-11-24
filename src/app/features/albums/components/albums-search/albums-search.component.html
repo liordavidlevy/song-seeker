@@ -1,47 +1,42 @@
 <div id="albums-search">
-  <div>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        placeholder="Search an album..."
-        [(ngModel)]="albumName"
-        [matAutocomplete]="auto"
-      />
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of options; track option) {
-        <mat-option [value]="option">{{ option }}</mat-option>
-        }
-      </mat-autocomplete>
-      <button
-        matSuffix
-        mat-icon-button
-        aria-label="Search"
-        (click)="onSearch()"
-      >
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-
-  <div *ngIf="albums$ | async; let albums">
-    {{ albums.total }}
-    <div id="albums-list">
-      @for (album of albums.items | filterNull; track album.id) {
-      <app-album-summary [album]="album" />
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="Search an album..."
+      [(ngModel)]="albumName"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (option of options; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
       }
-      <div id="loader">
-        <ngx-skeleton-loader
-          [theme]="{
-            width: '150px',
-            height: '150px',
-            'border-radius': '8px 0 0 8px'
-          }"
-        />
-        <div id="loader-text-group">
-          <ngx-skeleton-loader [theme]="{ height: '32px' }" />
-          <ngx-skeleton-loader count="2" />
-        </div>
-      </div>
+    </mat-autocomplete>
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Search"
+      (click)="search()"
+      [disabled]="albumName.length < 4"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <div id="results">
+    <h3>{{ total }} Total Results</h3>
+    <div
+      id="albums-list"
+      infinite-scroll
+      [infiniteScrollThrottle]="500"
+      (scrolled)="onScroll()"
+      [scrollWindow]="false"
+    >
+      @for (album of albums; track album.id) {
+      <app-album-summary [album]="album" />
+      } @if (isLoading) {
+      <app-album-summary-loader />
+      <app-album-summary-loader />
+      <app-album-summary-loader />
+      }
     </div>
   </div>
 </div>

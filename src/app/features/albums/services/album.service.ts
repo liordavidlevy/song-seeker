@@ -3,7 +3,7 @@ import { SpotifyService } from '../../../shared/services/spotify.service';
 import { map, Observable } from 'rxjs';
 import { AlbumResponse, Albums, AlbumsResponse } from './album.service.types';
 
-const PAGE_SIZE = 20;
+export const PAGE_SIZE = 20;
 
 @Injectable({
   providedIn: 'root'

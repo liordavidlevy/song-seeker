@@ -6,13 +6,9 @@
 >
   <mat-card-header>
     <img mat-card-image [src]="album.images[1].url" />
-    <mat-card-title-group>
-      <mat-card-title class="overflow-text-two-lines">{{
-        album.name
-      }}</mat-card-title>
-      <mat-card-subtitle class="overflow-text-one-line">{{
-        getArtists(album.artists)
-      }}</mat-card-subtitle>
+    <div id="summary-text">
+      <mat-card-title>{{ album.name }}</mat-card-title>
+      <mat-card-subtitle>{{ getArtists(album.artists) }}</mat-card-subtitle>
       <mat-card-subtitle
         >{{ album.total_tracks }}
         <ng-container [ngPlural]="album.total_tracks">
@@ -21,7 +17,7 @@
         </ng-container>
         | {{ album.release_date | date }}</mat-card-subtitle
       >
-    </mat-card-title-group>
+    </div>
   </mat-card-header>
   <mat-card-footer
     id="album-type"

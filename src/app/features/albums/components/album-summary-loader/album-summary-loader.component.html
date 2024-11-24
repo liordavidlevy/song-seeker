@@ -1,0 +1,13 @@
+<div id="loader">
+  <ngx-skeleton-loader
+    [theme]="{
+      width: '150px',
+      height: '150px',
+      'border-radius': '8px 0 0 8px'
+    }"
+  />
+  <div id="loader-text-group">
+    <ngx-skeleton-loader [theme]="{ height: '32px' }" />
+    <ngx-skeleton-loader count="2" />
+  </div>
+</div>

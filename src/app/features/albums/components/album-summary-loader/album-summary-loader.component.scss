@@ -1,0 +1,10 @@
+#loader {
+    width: 750px;
+    border-radius: 8px;
+    display: flex;
+    gap: 16px;
+    #loader-text-group {
+      padding: 16px;
+      width: inherit;
+    }
+  }
