@@ -11,15 +11,6 @@
   >
     <mat-icon class="page-icon" color="white">account_circle</mat-icon>
   </a>
-  <button
-    id="spotify-token"
-    mat-icon-button
-    matTooltip="Add access token"
-    matTooltipPosition="left"
-    (click)="addCoookie()"
-  >
-    <mat-icon class="page-icon" color="white">cookie</mat-icon>
-  </button>
   <span id="spacer"></span>
   @if (user$ | async; as user) {
   <div

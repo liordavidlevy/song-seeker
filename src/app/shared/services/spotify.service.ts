@@ -1,11 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, ObservableInput, of } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
 import { NotificationService } from './notification.service';
-import { CookieService } from 'ngx-cookie-service';
 
-const SPOTIFY_BASE_URL = 'https://api.spotify.com/v1';
+export const SPOTIFY_BASE_URL = 'https://api.spotify.com/v1';
 
 type HttpParams = {
   [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>
@@ -15,18 +13,11 @@ type HttpParams = {
   providedIn: 'root'
 })
 export class SpotifyService {
-  private headers: HttpHeaders;
-
-  constructor(private http: HttpClient, private cookieService: CookieService, private notificationService: NotificationService) {
-    const token: string = this.cookieService.get('spotify-token') || environment.spotifyAccessToken;
-
-    this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+  constructor(private http: HttpClient, private notificationService: NotificationService) {
   }
 
   get<T>(url: string, params?: HttpParams): Observable<T> {
-    return this.http.get<T>(`${SPOTIFY_BASE_URL}/${url}`, { params, headers: this.headers })
+    return this.http.get<T>(`${SPOTIFY_BASE_URL}/${url}`, { params })
       .pipe(catchError(this.handleError.bind(this)));
   }
 
